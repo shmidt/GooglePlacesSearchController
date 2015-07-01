@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "209BB988A50DABE96EB18F62"
+               BlueprintIdentifier = "868AD127F44928E36F166981"
                BuildableName = "GooglePlacesSearchController.framework"
                BlueprintName = "Pods-GooglePlacesSearchController_Example-GooglePlacesSearchController"
                ReferencedContainer = "container:Pods.xcodeproj">

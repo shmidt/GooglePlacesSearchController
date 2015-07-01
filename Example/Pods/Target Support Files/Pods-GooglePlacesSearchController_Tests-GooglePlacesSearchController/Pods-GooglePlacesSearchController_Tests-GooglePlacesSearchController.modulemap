@@ -1,0 +1,6 @@
+framework module GooglePlacesSearchController {
+  umbrella header "Pods-GooglePlacesSearchController_Tests-GooglePlacesSearchController-umbrella.h"
+
+  export *
+  module * { export * }
+}

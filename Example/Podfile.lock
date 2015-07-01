@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  GooglePlacesSearchController: c16d0469e72cb82120bd09e583a81634afdc6a18
+  GooglePlacesSearchController: a43848c8efac18d9593f569a0b366753d2b3b5c3
 
 COCOAPODS: 0.37.2
