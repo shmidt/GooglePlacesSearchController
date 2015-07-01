@@ -43,7 +43,7 @@ pod "GooglePlacesSearchController"
 ```
 
 
-###Usage
+##Usage
 ```swift
 var controller: GooglePlacesSearchController!
 controller = GooglePlacesAutocomplete(
