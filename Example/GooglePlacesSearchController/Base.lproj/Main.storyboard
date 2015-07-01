@@ -1,25 +1,75 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="rBc-d4-ezF">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
-        <scene sceneID="ufC-wZ-h7g">
+        <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GooglePlacesSearchControllerExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vdc-Vp-pSI" userLabel="SearchContainer">
+                                <rect key="frame" x="0.0" y="64" width="600" height="60"/>
+                                <subviews>
+                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PoweredByGoogle" translatesAutoresizingMaskIntoConstraints="NO" id="9CB-Za-sms">
+                                        <rect key="frame" x="0.0" y="44" width="600" height="16"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="16" id="tkl-Id-Fuo"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="JIj-jJ-kFf"/>
+                                    <constraint firstItem="9CB-Za-sms" firstAttribute="leading" secondItem="Vdc-Vp-pSI" secondAttribute="leading" id="PfN-bV-mlz"/>
+                                    <constraint firstAttribute="trailing" secondItem="9CB-Za-sms" secondAttribute="trailing" id="eLm-LC-aE0"/>
+                                    <constraint firstItem="9CB-Za-sms" firstAttribute="top" secondItem="Vdc-Vp-pSI" secondAttribute="top" constant="44" id="u7h-yQ-Rdy"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Vdc-Vp-pSI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Fpc-5w-OSa"/>
+                            <constraint firstItem="Vdc-Vp-pSI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="G81-BC-ga2"/>
+                            <constraint firstAttribute="trailing" secondItem="Vdc-Vp-pSI" secondAttribute="trailing" id="QdX-8G-i8F"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="3Ux-xq-e2r"/>
+                    <connections>
+                        <outlet property="searchBarContainer" destination="Vdc-Vp-pSI" id="ajv-Uz-vk7"/>
+                    </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="1019" y="1079"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pNw-C3-plh">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="rBc-d4-ezF" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="O9Q-4B-WsD">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="5Sc-JF-wdx"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kKa-mb-d9b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="306" y="1079"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="PoweredByGoogle" width="104" height="16"/>
+    </resources>
 </document>

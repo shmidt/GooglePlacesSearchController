@@ -1,28 +1,14 @@
-#
-# Be sure to run `pod lib lint GooglePlacesSearchController.podspec' to ensure this is a
-# valid spec and remove all comments before submitting the spec.
-#
-# Any lines starting with a # are optional, but encouraged
-#
-# To learn more about a Podspec see http://guides.cocoapods.org/syntax/podspec.html
-#
-
 Pod::Spec.new do |s|
   s.name             = "GooglePlacesSearchController"
   s.version          = "0.1.0"
-  s.summary          = "A short description of GooglePlacesSearchController."
-  s.description      = <<-DESC
-                       An optional longer description of GooglePlacesSearchController
-
-                       * Markdown format.
-                       * Don't worry about the indent, we strip it!
-                       DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/GooglePlacesSearchController"
-  # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
+  s.summary      = "Autocompleting address search controller, uses Google Maps Autocomplete API."
+  s.homepage         = "https://github.com/shmidt/GooglePlacesSearchController"
+  s.screenshots = "https://raw.githubusercontent.com/shmidt/GooglePlacesSearchController/master/Screenshots/view.png", "https://raw.githubusercontent.com/shmidt/GooglePlacesSearchController/master/Screenshots/search.png"
   s.license          = 'MIT'
-  s.author           = { "Dmitry Shmidt" => "dima.shmidt@gmail.com" }
-  s.source           = { :git => "https://github.com/<GITHUB_USERNAME>/GooglePlacesSearchController.git", :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.author             = { "Dmitry Shmidt" => "dima.shmidt@gmail.com" }
+  s.social_media_url   = "https://twitter.com/mind_detonator"
+
+  s.source           = { :git => "https://github.com/shmidt/GooglePlacesSearchController.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
@@ -31,8 +17,4 @@ Pod::Spec.new do |s|
   s.resource_bundles = {
     'GooglePlacesSearchController' => ['Pod/Assets/*.png']
   }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
