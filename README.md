@@ -5,8 +5,6 @@
 [![License](https://img.shields.io/cocoapods/l/GooglePlacesSearchController.svg?style=flat)](http://cocoapods.org/pods/GooglePlacesSearchController)
 [![Platform](https://img.shields.io/cocoapods/p/GooglePlacesSearchController.svg?style=flat)](http://cocoapods.org/pods/GooglePlacesSearchController)
 
-# GooglePlacesSearchController
-
 
 A simple [Google Places API](https://developers.google.com/places/documentation/autocomplete) autocompleting address search controller (subclass of ```UISearchController```) for iOS devices.
 
@@ -14,6 +12,9 @@ GooglePlacesAutocomplete is 100% Swift, and is a fork of https://github.com/wats
 
 No attempt has been made to integrate MapKit since displaying Google Places on a non-Google map is against their terms of service.
 
+___
+
+## Screenshots
 <table width="100%">
   <tr>
     <td align="left"><img src="Screenshots/view.png"/></td>
