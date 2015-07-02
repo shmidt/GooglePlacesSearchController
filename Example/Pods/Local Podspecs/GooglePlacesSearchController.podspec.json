@@ -1,6 +1,6 @@
 {
   "name": "GooglePlacesSearchController",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "summary": "Autocompleting address search controller, uses Google Maps Autocomplete API.",
   "homepage": "https://github.com/shmidt/GooglePlacesSearchController",
   "screenshots": [
@@ -14,16 +14,12 @@
   "social_media_url": "https://twitter.com/mind_detonator",
   "source": {
     "git": "https://github.com/shmidt/GooglePlacesSearchController.git",
-    "tag": "0.1.1"
+    "tag": "0.1.2"
   },
   "platforms": {
     "ios": "8.0"
   },
   "requires_arc": true,
   "source_files": "Pod/Classes/**/*",
-  "resource_bundles": {
-    "GooglePlacesSearchController": [
-      "Pod/Assets/*.xcassets"
-    ]
-  }
+  "resources": "Pod/Assets/*.png"
 }

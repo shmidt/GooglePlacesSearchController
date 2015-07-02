@@ -1,5 +1,5 @@
 PODS:
-  - GooglePlacesSearchController (0.1.1)
+  - GooglePlacesSearchController (0.1.2)
 
 DEPENDENCIES:
   - GooglePlacesSearchController (from `../`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  GooglePlacesSearchController: b5badae856c33d10db8b1e9171e1817b8659e0aa
+  GooglePlacesSearchController: c76685a2d74df4531a59ade993ea23a511321090
 
 COCOAPODS: 0.37.2

@@ -32,7 +32,7 @@ public enum PlaceType: Printable {
     }
 }
 
-typealias GooglePlaceSelectedClosure = (place: PlaceDetails) -> Void
+public typealias GooglePlaceSelectedClosure = (place: PlaceDetails) -> Void
 
 public class Place: NSObject {
     public let id: String
@@ -170,13 +170,13 @@ public class PlaceDetails: Printable {
 }
 
 // MARK: - GooglePlacesAutocomplete
-class GooglePlacesSearchController: UISearchController, UISearchBarDelegate {
+public class GooglePlacesSearchController: UISearchController, UISearchBarDelegate {
     
     private var gpaViewController: GooglePlacesAutocompleteContainer!
     
     private var googleSearchBar: UISearchBar?
     
-    convenience init(apiKey: String, placeType: PlaceType = .All, searchBar: UISearchBar? = nil, coordinate: CLLocationCoordinate2D = kCLLocationCoordinate2DInvalid, radius: CLLocationDistance = 0) {
+    convenience public init(apiKey: String, placeType: PlaceType = .All, searchBar: UISearchBar? = nil, coordinate: CLLocationCoordinate2D = kCLLocationCoordinate2DInvalid, radius: CLLocationDistance = 0) {
         assert(!apiKey.isEmpty, "Provide your API key")
         let gpaViewController = GooglePlacesAutocompleteContainer(
             apiKey: apiKey,
@@ -197,12 +197,12 @@ class GooglePlacesSearchController: UISearchController, UISearchBarDelegate {
         self.searchBar.placeholder = "Enter Address"
     }
     
-    override var searchBar: UISearchBar { get {
+    override public var searchBar: UISearchBar { get {
         return googleSearchBar ?? super.searchBar
         }
     }
     
-    func didSelectGooglePlace(completion : GooglePlaceSelectedClosure){
+    public func didSelectGooglePlace(completion : GooglePlaceSelectedClosure){
         gpaViewController.closure = completion
     }
 }

@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "GooglePlacesSearchController"
-  s.version          = "0.1.1"
+  s.version          = "0.1.2"
   s.summary      = "Autocompleting address search controller, uses Google Maps Autocomplete API."
   s.homepage         = "https://github.com/shmidt/GooglePlacesSearchController"
   s.screenshots = "https://raw.githubusercontent.com/shmidt/GooglePlacesSearchController/master/Screenshots/view.png", "https://raw.githubusercontent.com/shmidt/GooglePlacesSearchController/master/Screenshots/search.png"
@@ -14,7 +14,6 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.source_files = 'Pod/Classes/**/*'
-  s.resource_bundles = {
-    'GooglePlacesSearchController' => ['Pod/Assets/*.xcassets']
-  }
+  s.resources = 'Pod/Assets/*.png'
+
 end

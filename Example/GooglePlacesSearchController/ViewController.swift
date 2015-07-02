@@ -14,9 +14,22 @@ class ViewController: UIViewController {
     let GoogleMapsAPIServerKey = "YOUR KEY"
     var controller: GooglePlacesSearchController!
     
+    @IBOutlet weak var attributionImageView: UIImageView!
     @IBOutlet weak var tempSearchBar: UISearchBar!
     @IBOutlet weak var searchBarContainer: UIView!
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+//        if let bundlePath = NSBundle.mainBundle().pathForResource("GooglePlacesSearchController", ofType: "bundle"),
+//        let bundle = NSBundle(path: bundlePath),
+//        let imagePath = bundle.pathForResource("PoweredByGoogle", ofType: "png"),
+//        let imageData = NSData(contentsOfFile: imagePath)
+//        {
+//            attributionImageView.image = UIImage(data: imageData)
+//        }
+        
+    }
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
 
