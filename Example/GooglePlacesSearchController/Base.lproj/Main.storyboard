@@ -7,7 +7,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GooglePlacesSearchController_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="GooglePlacesSearchControllerExample" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,37 +15,15 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vdc-Vp-pSI" userLabel="SearchContainer">
-                                <rect key="frame" x="0.0" y="64" width="600" height="60"/>
-                                <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PoweredByGoogle" translatesAutoresizingMaskIntoConstraints="NO" id="9CB-Za-sms">
-                                        <rect key="frame" x="0.0" y="44" width="600" height="16"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="16" id="tkl-Id-Fuo"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="JIj-jJ-kFf"/>
-                                    <constraint firstItem="9CB-Za-sms" firstAttribute="leading" secondItem="Vdc-Vp-pSI" secondAttribute="leading" id="PfN-bV-mlz"/>
-                                    <constraint firstAttribute="trailing" secondItem="9CB-Za-sms" secondAttribute="trailing" id="eLm-LC-aE0"/>
-                                    <constraint firstItem="9CB-Za-sms" firstAttribute="top" secondItem="Vdc-Vp-pSI" secondAttribute="top" constant="44" id="u7h-yQ-Rdy"/>
-                                </constraints>
-                            </view>
-                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="Vdc-Vp-pSI" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Fpc-5w-OSa"/>
-                            <constraint firstItem="Vdc-Vp-pSI" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="G81-BC-ga2"/>
-                            <constraint firstAttribute="trailing" secondItem="Vdc-Vp-pSI" secondAttribute="trailing" id="QdX-8G-i8F"/>
-                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="3Ux-xq-e2r"/>
-                    <connections>
-                        <outlet property="attributionImageView" destination="9CB-Za-sms" id="FeB-ii-iaM"/>
-                        <outlet property="searchBarContainer" destination="Vdc-Vp-pSI" id="ajv-Uz-vk7"/>
-                    </connections>
+                    <navigationItem key="navigationItem" id="3Ux-xq-e2r">
+                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="wCg-0H-jb8">
+                            <connections>
+                                <action selector="searchAddress:" destination="BYZ-38-t0r" id="xO5-zu-Z7o"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -70,7 +48,4 @@
             <point key="canvasLocation" x="306" y="1079"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="PoweredByGoogle" width="104" height="16"/>
-    </resources>
 </document>
