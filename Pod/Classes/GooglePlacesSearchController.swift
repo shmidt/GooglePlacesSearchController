@@ -12,7 +12,7 @@
 import UIKit
 import CoreLocation
 
-enum PlaceType: Printable {
+public enum PlaceType: Printable {
     case All
     case Geocode
     case Address
@@ -20,7 +20,7 @@ enum PlaceType: Printable {
     case Regions
     case Cities
     
-    var description : String {
+    public var description : String {
         switch self {
         case .All: return ""
         case .Geocode: return "geocode"
@@ -34,18 +34,18 @@ enum PlaceType: Printable {
 
 typealias GooglePlaceSelectedClosure = (place: PlaceDetails) -> Void
 
-class Place: NSObject {
-    let id: String
-    let desc: String?
-    let name: String?
-    var apiKey: String?
+public class Place: NSObject {
+    public let id: String
+    public let desc: String?
+    public let name: String?
+    public var apiKey: String?
     
-    override var description: String {
+    override public var description: String {
         get { return desc! }
     }
 
     
-    init(id: String, terms: [String]?) {
+    public init(id: String, terms: [String]?) {
         self.id = id
         if let terms = terms{
             self.name = terms.first
@@ -62,7 +62,7 @@ class Place: NSObject {
         }
     }
     
-    convenience init(prediction: [String: AnyObject], apiKey: String?) {
+    convenience public init(prediction: [String: AnyObject], apiKey: String?) {
 
         var terms = [String]()
 
@@ -91,28 +91,28 @@ class Place: NSObject {
     
     :param: result Callback on successful completion with detailed place information
     */
-    func getDetails(result: PlaceDetails -> ()) {
+    public func getDetails(result: PlaceDetails -> ()) {
         GooglePlaceDetailsRequest(place: self).request(result)
     }
 }
 
-class PlaceDetails: Printable {
-    let name: String
-    let formattedAddress: String
-    let formattedPhoneNo: String?
-    let coordinate: CLLocationCoordinate2D
+public class PlaceDetails: Printable {
+    public let name: String
+    public let formattedAddress: String
+    public let formattedPhoneNo: String?
+    public let coordinate: CLLocationCoordinate2D
     
-    var streetNumber           = ""
-    var route                  = ""
-    var locality               = ""
-    var subLocality            = ""
-    var administrativeArea     = ""
-    var administrativeAreaCode = ""
-    var subAdministrativeArea  = ""
-    var postalCode             = ""
-    var country                = ""
-    var ISOcountryCode         = ""
-    var state                  = ""
+    public var streetNumber           = ""
+    public var route                  = ""
+    public var locality               = ""
+    public var subLocality            = ""
+    public var administrativeArea     = ""
+    public var administrativeAreaCode = ""
+    public var subAdministrativeArea  = ""
+    public var postalCode             = ""
+    public var country                = ""
+    public var ISOcountryCode         = ""
+    public var state                  = ""
     
     let raw: [String: AnyObject]
     
@@ -162,7 +162,7 @@ class PlaceDetails: Printable {
 
     }
     
-    var description: String {
+    public var description: String {
         return "\nPlace: \(name).\nAddress: \(formattedAddress).\ncoordinate: (\(coordinate.latitude), \(coordinate.longitude))\nPhone No.: \(formattedPhoneNo)\n"
     }
     
@@ -208,7 +208,7 @@ class GooglePlacesSearchController: UISearchController, UISearchBarDelegate {
 }
 
 // MARK: - GooglePlacesAutocompleteContainer
-class GooglePlacesAutocompleteContainer: UITableViewController, UISearchResultsUpdating {
+public class GooglePlacesAutocompleteContainer: UITableViewController, UISearchResultsUpdating {
 
     var closure: GooglePlaceSelectedClosure?
     private var apiKey: String?
@@ -231,7 +231,7 @@ class GooglePlacesAutocompleteContainer: UITableViewController, UISearchResultsU
 //        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIContentSizeCategoryDidChangeNotification, object: nil)
 //    }
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         
         tableView.registerClass(GooglePlaceTableViewCell.self, forCellReuseIdentifier: "Cell")
@@ -290,11 +290,11 @@ private class GooglePlaceTableViewCell: UITableViewCell {
     }
 }
 extension GooglePlacesAutocompleteContainer{
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return places.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as! GooglePlaceTableViewCell
         
         // Get the corresponding candy from our candies array
@@ -309,7 +309,7 @@ extension GooglePlacesAutocompleteContainer{
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
         let place = places[indexPath.row]
         
@@ -323,7 +323,7 @@ extension GooglePlacesAutocompleteContainer{
 
 // MARK: - GooglePlacesAutocompleteContainer (UISearchBarDelegate)
 extension GooglePlacesAutocompleteContainer: UISearchBarDelegate {
-    func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
+    public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         if count(searchText) > 0 {
             self.places = []
         } else {
@@ -371,7 +371,7 @@ extension GooglePlacesAutocompleteContainer: UISearchBarDelegate {
 }
 extension GooglePlacesAutocompleteContainer: UISearchResultsUpdating
 {
-    func updateSearchResultsForSearchController(searchController: UISearchController)
+    public func updateSearchResultsForSearchController(searchController: UISearchController)
     {
         let searchText = searchController.searchBar.text
         if (searchText == "") {
