@@ -122,7 +122,7 @@ public class PlaceDetails: Printable {
                 var types = item["types"] as! [String]
                 if let type = types.first{
                     if type == component {
-                        if let value = item[component] as! String?{
+                        if let value = item[ofType] as! String?{
                            return value
                         }
                     }
