@@ -12,7 +12,7 @@
 import UIKit
 import CoreLocation
 
-public enum PlaceType: Printable {
+public enum PlaceType: CustomStringConvertible {
     case All
     case Geocode
     case Address
@@ -50,9 +50,9 @@ public class Place: NSObject {
         if let terms = terms{
             self.name = terms.first
             var tmpTerms = terms
-            if count(terms) > 0{
+            if terms.count > 0{
                 tmpTerms.removeAtIndex(0)
-                self.desc = ", ".join(tmpTerms)
+                self.desc = tmpTerms.joinWithSeparator(",")
             }else{
                 self.desc = ""
             }
@@ -96,7 +96,7 @@ public class Place: NSObject {
     }
 }
 
-public class PlaceDetails: Printable {
+public class PlaceDetails: CustomStringConvertible {
     public let name: String
     public let formattedAddress: String
     public let formattedPhoneNo: String?
@@ -119,7 +119,7 @@ public class PlaceDetails: Printable {
     init(json: [String: AnyObject]) {
         func component(component: String, inArray array: [[String: AnyObject]], ofType: String) -> String{
             for item in array {
-                var types = item["types"] as! [String]
+                let types = item["types"] as! [String]
                 if let type = types.first{
                     if type == component {
                         if let value = item[ofType] as! String?{
@@ -147,15 +147,15 @@ public class PlaceDetails: Printable {
         
         let addressComponents = result["address_components"] as! [[String: AnyObject]]
         
-        streetNumber = component("street_number", inArray: addressComponents, "short_name")
-        route = component("route", inArray: addressComponents, "short_name")
-        subLocality = component("subLocality", inArray: addressComponents, "long_name")
-        locality = component("locality", inArray: addressComponents, "long_name")
-        postalCode = component("postal_code", inArray: addressComponents, "long_name")
-        administrativeArea = component("administrative_area_level_1", inArray: addressComponents, "long_name")
-        subAdministrativeArea = component("administrative_area_level_2", inArray: addressComponents, "long_name")
-        country = component("country", inArray: addressComponents, "long_name")
-        ISOcountryCode = component("country", inArray: addressComponents, "short_name")
+        streetNumber = component("street_number", inArray: addressComponents, ofType: "short_name")
+        route = component("route", inArray: addressComponents, ofType: "short_name")
+        subLocality = component("subLocality", inArray: addressComponents, ofType: "long_name")
+        locality = component("locality", inArray: addressComponents, ofType: "long_name")
+        postalCode = component("postal_code", inArray: addressComponents, ofType: "long_name")
+        administrativeArea = component("administrative_area_level_1", inArray: addressComponents, ofType: "long_name")
+        subAdministrativeArea = component("administrative_area_level_2", inArray: addressComponents, ofType: "long_name")
+        country = component("country", inArray: addressComponents, ofType: "long_name")
+        ISOcountryCode = component("country", inArray: addressComponents, ofType: "short_name")
         
         raw = json
         
@@ -258,9 +258,9 @@ private class GooglePlaceTableViewCell: UITableViewCell {
         super.init(style: .Default, reuseIdentifier: reuseIdentifier)
 
         self.selectionStyle = UITableViewCellSelectionStyle.Gray
-
-        nameLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
-        addressLabel.setTranslatesAutoresizingMaskIntoConstraints(false)
+        
+        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        addressLabel.translatesAutoresizingMaskIntoConstraints = false
         
         nameLabel.textColor = UIColor.blackColor()
         nameLabel.backgroundColor = UIColor.whiteColor()
@@ -280,12 +280,12 @@ private class GooglePlaceTableViewCell: UITableViewCell {
         ]
         
 
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[name]-[address]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[name]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDict))
-        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[address]-|", options: NSLayoutFormatOptions(0), metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-[name]-[address]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[name]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDict))
+        contentView.addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("H:|-[address]-|", options: NSLayoutFormatOptions(rawValue: 0), metrics: nil, views: viewsDict))
     }
     
-    required init(coder: NSCoder) {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
 }
@@ -324,7 +324,7 @@ extension GooglePlacesAutocompleteContainer{
 // MARK: - GooglePlacesAutocompleteContainer (UISearchBarDelegate)
 extension GooglePlacesAutocompleteContainer: UISearchBarDelegate {
     public func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
-        if count(searchText) > 0 {
+        if searchText.characters.count > 0 {
             self.places = []
         } else {
             getPlaces(searchText)
@@ -369,15 +369,15 @@ extension GooglePlacesAutocompleteContainer: UISearchBarDelegate {
         }
     }
 }
-extension GooglePlacesAutocompleteContainer: UISearchResultsUpdating
+extension GooglePlacesAutocompleteContainer
 {
     public func updateSearchResultsForSearchController(searchController: UISearchController)
     {
-        let searchText = searchController.searchBar.text
-        if (searchText == "") {
-            self.places = []
-        } else {
+        if let searchText = searchController.searchBar.text where searchText.characters.count > 0 {
             getPlaces(searchText)
+        }
+        else {
+            self.places = []
         }
     }
 }
@@ -412,23 +412,23 @@ class GooglePlacesRequestHelpers {
     */
     private class func query(parameters: [String: AnyObject]) -> String {
         var components: [(String, String)] = []
-        for key in sorted(Array(parameters.keys), <) {
+        for key in Array(parameters.keys).sort() {
             let value: AnyObject! = parameters[key]
             components += [(key, "\(value)")]
         }
         
-        return join("&", components.map{"\($0)=\($1)"} as [String])
+        return components.map{"\($0)=\($1)"}.joinWithSeparator("&")
     }
     
     private class func doRequest(urlString: String, params: [String: String], success: NSDictionary -> ()) {
         if let url = NSURL(string: "\(urlString)?\(query(params))"){
 
-            var request = NSMutableURLRequest(
+            let request = NSMutableURLRequest(
                 URL:url
             )
             
-            var session = NSURLSession.sharedSession()
-            var task = session.dataTaskWithRequest(request) { data, response, error in
+            let session = NSURLSession.sharedSession()
+            let task = session.dataTaskWithRequest(request) { data, response, error in
                 self.handleResponse(data, response: response as? NSHTTPURLResponse, error: error, success: success)
             }
             
@@ -438,35 +438,33 @@ class GooglePlacesRequestHelpers {
     
     private class func handleResponse(data: NSData!, response: NSHTTPURLResponse!, error: NSError!, success: NSDictionary -> ()) {
         if let error = error {
-            println("GooglePlaces Error: \(error.localizedDescription)")
+            print("GooglePlaces Error: \(error.localizedDescription)")
             return
         }
         
         if response == nil {
-            println("GooglePlaces Error: No response from API")
+            print("GooglePlaces Error: No response from API")
             return
         }
         
         if response.statusCode != 200 {
-            println("GooglePlaces Error: Invalid status code \(response.statusCode) from API")
+            print("GooglePlaces Error: Invalid status code \(response.statusCode) from API")
             return
         }
         
-        var serializationError: NSError?
-        var json: NSDictionary = NSJSONSerialization.JSONObjectWithData(
-            data,
-            options: NSJSONReadingOptions.MutableContainers,
-            error: &serializationError
-            ) as! NSDictionary
-        
-        if let error = serializationError {
-            println("GooglePlaces Error: \(error.localizedDescription)")
+        let json: NSDictionary?
+        do {
+            json = try NSJSONSerialization.JSONObjectWithData(data, options: NSJSONReadingOptions.MutableContainers) as? NSDictionary
+        }
+        catch {
+            json = nil
+            print("GooglePlaces Error")
             return
         }
         
-        if let status = json["status"] as? String {
+        if let status = json?["status"] as? String {
             if status != "OK" {
-                println("GooglePlaces API Error: \(status)")
+                print("GooglePlaces API Error: \(status)")
                 return
             }
         }
@@ -474,8 +472,7 @@ class GooglePlacesRequestHelpers {
         // Perform table updates on UI thread
         dispatch_async(dispatch_get_main_queue(), {
             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
-            
-            success(json)
+            success(json!)
         })
     }
 }
