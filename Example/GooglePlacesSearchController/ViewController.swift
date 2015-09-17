@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation
 import MapKit
+import GooglePlacesSearchController
 
 class ViewController: UIViewController {
     let GoogleMapsAPIServerKey = "YOUR KEY"
@@ -30,7 +31,7 @@ class ViewController: UIViewController {
         //        )
         
         controller.didSelectGooglePlace { (place) -> Void in
-            println(place.description)
+            print(place.description)
             
             //Dismiss Search
             controller.active = false
