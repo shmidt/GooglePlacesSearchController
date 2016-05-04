@@ -74,13 +74,9 @@ controller.didSelectGooglePlace { (place) -> Void in
 } 
 ```
 
-##Other
-
-Looking for a job as an iOS developer in USA. Legal resident, currently live in San Jose, CA.
-
 ## Author
 
-Dmitry Shmidt, dima.shmidt@gmail.com
+Dmitry Shmidt
 
 ## License
 
