@@ -12,7 +12,7 @@ import MapKit
 import GooglePlacesSearchController
 
 class ViewController: UIViewController {
-    let GoogleMapsAPIServerKey = "YOUR KEY"
+    let GoogleMapsAPIServerKey = "YOUR_KEY"
 
     @IBAction func searchAddress(sender: UIBarButtonItem) {
         
@@ -21,14 +21,14 @@ class ViewController: UIViewController {
             placeType: PlaceType.Address
         )
         
-        //Or ff you want to use autocompletion for specific coordinate and radius (in meters)
-        //        let coord = CLLocationCoordinate2D(latitude: 55.751244, longitude: 37.618423)
-        //        controller = GooglePlacesSearchController(
-        //            apiKey: GoogleMapsAPIServerKey,
-        //            placeType: PlaceType.Address,
-        //            coordinate: coord,
-        //            radius: 10
-        //        )
+//        Or if you want to use autocompletion for specific coordinate and radius (in meters)        
+//        let coord = CLLocationCoordinate2D(latitude: 55.751244, longitude: 37.618423)
+//        let controller = GooglePlacesSearchController(
+//            apiKey: GoogleMapsAPIServerKey,
+//            placeType: PlaceType.Address,
+//            coordinate: coord,
+//            radius: 10
+//        )
         
         controller.didSelectGooglePlace { (place) -> Void in
             print(place.description)
