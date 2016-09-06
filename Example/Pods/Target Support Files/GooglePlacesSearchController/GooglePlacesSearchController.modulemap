@@ -1,0 +1,6 @@
+framework module GooglePlacesSearchController {
+  umbrella header "GooglePlacesSearchController-umbrella.h"
+
+  export *
+  module * { export * }
+}
