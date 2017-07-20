@@ -150,6 +150,7 @@ open class PlaceDetails: CustomStringConvertible {
         locality = component("locality", inArray: addressComponents, ofType: "long_name")
         postalCode = component("postal_code", inArray: addressComponents, ofType: "long_name")
         administrativeArea = component("administrative_area_level_1", inArray: addressComponents, ofType: "long_name")
+        administrativeAreaCode = component("administrative_area_level_1", inArray: addressComponents, ofType: "short_name")
         subAdministrativeArea = component("administrative_area_level_2", inArray: addressComponents, ofType: "long_name")
         country = component("country", inArray: addressComponents, ofType: "long_name")
         ISOcountryCode = component("country", inArray: addressComponents, ofType: "short_name")
