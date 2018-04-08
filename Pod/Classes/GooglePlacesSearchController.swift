@@ -52,10 +52,14 @@ open class PlaceDetails: CustomStringConvertible {
     open var streetNumber: String? = nil
     open var route: String? = nil
     open var postalCode: String? = nil
-    open var state: String? = nil
-    open var ISOstateCode: String? = nil
     open var country: String? = nil
-    open var ISOcountryCode: String? = nil
+    open var countryCode: String? = nil
+    
+    open var locality: String? = nil
+    open var subLocality: String? = nil
+    open var administrativeArea: String? = nil
+    open var administrativeAreaCode: String? = nil
+    open var subAdministrativeArea: String? = nil
     
     open var coordinate: CLLocationCoordinate2D? = nil
     
@@ -70,10 +74,14 @@ open class PlaceDetails: CustomStringConvertible {
             streetNumber = get("street_number", from: addressComponents, ofType: .short)
             route = get("route", from: addressComponents, ofType: .short)
             postalCode = get("postal_code", from: addressComponents, ofType: .long)
-            state = get("administrative_area_level_1", from: addressComponents, ofType: .long)
-            ISOstateCode = get("administrative_area_level_1", from: addressComponents, ofType: .short)
             country = get("country", from: addressComponents, ofType: .long)
-            ISOcountryCode = get("country", from: addressComponents, ofType: .short)
+            countryCode = get("country", from: addressComponents, ofType: .short)
+            
+            locality = get("locality", from: addressComponents, ofType: .long)
+            subLocality = get("sublocality", from: addressComponents, ofType: .long)
+            administrativeArea = get("administrative_area_level_1", from: addressComponents, ofType: .long)
+            administrativeAreaCode = get("administrative_area_level_1", from: addressComponents, ofType: .short)
+            subAdministrativeArea = get("administrative_area_level_2", from: addressComponents, ofType: .long)
         }
         
         if let geometry = result["geometry"] as? [String: Any],
