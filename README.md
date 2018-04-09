@@ -7,7 +7,7 @@
 
 A simple [Google Places API](https://developers.google.com/places/documentation/autocomplete) autocompleting address search controller (subclass of ```UISearchController```) for iOS devices.
 
-GooglePlacesSearchController is 100% Swift 3, and is a fork of https://github.com/watsonbox/ios_google_places_autocomplete.
+GooglePlacesSearchController is 100% Swift 4, and is a fork of https://github.com/watsonbox/ios_google_places_autocomplete.
 
 No attempt has been made to integrate MapKit since displaying Google Places on a non-Google map is against their terms of service.
 
@@ -30,7 +30,7 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ## Requirements
 
 iOS 8.0+
-Xcode 8.0+ / Swift 3.0
+Xcode 8.0+ / Swift 4.0
 
 ## Installation
 

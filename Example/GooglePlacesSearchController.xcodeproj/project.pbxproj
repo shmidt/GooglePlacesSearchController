@@ -31,7 +31,7 @@
 		733756FEBF7DB391B4578C80 /* Pods-GooglePlacesSearchController_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GooglePlacesSearchController_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-GooglePlacesSearchController_Tests/Pods-GooglePlacesSearchController_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		7447A3A38E3AE062BCAC3061 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		7EB829F85B5167D492C4F820 /* Pods_GooglePlacesSearchController_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GooglePlacesSearchController_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CF6BA997EFA058D60525513C /* GooglePlacesSearchController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GooglePlacesSearchController.podspec; path = ../GooglePlacesSearchController.podspec; sourceTree = "<group>"; };
+		CF6BA997EFA058D60525513C /* GooglePlacesSearchController.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = GooglePlacesSearchController.podspec; path = ../GooglePlacesSearchController.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

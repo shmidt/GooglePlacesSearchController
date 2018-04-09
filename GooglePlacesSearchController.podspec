@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.license          = 'MIT'
   s.author             = { "Dmitry Shmidt" => "dima.shmidt@gmail.com" }
   s.social_media_url   = "https://twitter.com/mind_detonator"
-
+  s.swift_version = '4.0'
   s.source           = { :git => "https://github.com/shmidt/GooglePlacesSearchController.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '8.0'
