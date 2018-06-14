@@ -20,6 +20,7 @@ class ViewController: UIViewController {
                                                       placeType: .address
             // Optional: coordinate: CLLocationCoordinate2D(latitude: 55.751244, longitude: 37.618423),
             // Optional: radius: 10,
+            // Optional: strictBounds: true,
             // Optional: searchBarPlaceholder: "Start typing..."
         )
         //Optional: controller.searchBar.isTranslucent = false
