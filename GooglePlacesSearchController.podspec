@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
   s.name             = "GooglePlacesSearchController"
-  s.version          = "0.2.0"
-  s.summary      = "Autocompleting address search controller, uses Google Maps Autocomplete API. Written in Swift."
+  s.version          = "0.2.1"
+  s.summary      = "Autocompleting address search controller, uses Google Maps Autocomplete API. Written in Swift 4."
   s.homepage         = "https://github.com/shmidt/GooglePlacesSearchController"
   s.screenshots = "https://raw.githubusercontent.com/shmidt/GooglePlacesSearchController/master/Screenshots/view.png", "https://raw.githubusercontent.com/shmidt/GooglePlacesSearchController/master/Screenshots/search.png"
   s.license          = 'MIT'
