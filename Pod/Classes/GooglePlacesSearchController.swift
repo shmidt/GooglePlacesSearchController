@@ -49,12 +49,14 @@ open class Place: NSObject {
 
 open class PlaceDetails: CustomStringConvertible {
     open let formattedAddress: String
+    open var name: String? = nil
+
     open var streetNumber: String? = nil
     open var route: String? = nil
     open var postalCode: String? = nil
     open var country: String? = nil
     open var countryCode: String? = nil
-    
+
     open var locality: String? = nil
     open var subLocality: String? = nil
     open var administrativeArea: String? = nil
@@ -69,6 +71,7 @@ open class PlaceDetails: CustomStringConvertible {
             else { return nil }
         
         self.formattedAddress = formattedAddress
+        self.name = result["name"] as? String
         
         if let addressComponents = result["address_components"] as? [[String: Any]] {
             streetNumber = get("street_number", from: addressComponents, ofType: .short)
@@ -118,7 +121,7 @@ private extension PlaceDetails {
 
 open class GooglePlacesSearchController: UISearchController, UISearchBarDelegate {
     
-    convenience public init(delegate: GooglePlacesAutocompleteViewControllerDelegate, apiKey: String, placeType: PlaceType = .all, coordinate: CLLocationCoordinate2D = kCLLocationCoordinate2DInvalid, radius: CLLocationDistance = 0, searchBarPlaceholder: String = "Enter Address") {
+    convenience public init(delegate: GooglePlacesAutocompleteViewControllerDelegate, apiKey: String, placeType: PlaceType = .all, coordinate: CLLocationCoordinate2D = kCLLocationCoordinate2DInvalid, radius: CLLocationDistance = 0, strictBounds: Bool = false, searchBarPlaceholder: String = "Enter Address") {
         assert(!apiKey.isEmpty, "Provide your API key")
         
         let gpaViewController = GooglePlacesAutocompleteContainer(
@@ -126,7 +129,8 @@ open class GooglePlacesSearchController: UISearchController, UISearchBarDelegate
             apiKey: apiKey,
             placeType: placeType,
             coordinate: coordinate,
-            radius: radius
+            radius: radius,
+            strictBounds: strictBounds
         )
         
         self.init(searchResultsController: gpaViewController)
@@ -149,6 +153,7 @@ open class GooglePlacesAutocompleteContainer: UITableViewController {
     private var placeType: PlaceType = .all
     private var coordinate: CLLocationCoordinate2D = kCLLocationCoordinate2DInvalid
     private var radius: Double = 0.0
+    private var strictBounds: Bool = false
     private let cellIdentifier = "Cell"
     
     private var places = [Place]() {
@@ -156,13 +161,14 @@ open class GooglePlacesAutocompleteContainer: UITableViewController {
     }
     
     
-    convenience init(delegate: GooglePlacesAutocompleteViewControllerDelegate, apiKey: String, placeType: PlaceType = .all, coordinate: CLLocationCoordinate2D, radius: Double) {
+    convenience init(delegate: GooglePlacesAutocompleteViewControllerDelegate, apiKey: String, placeType: PlaceType = .all, coordinate: CLLocationCoordinate2D, radius: Double, strictBounds: Bool) {
         self.init()
         self.delegate = delegate
         self.apiKey = apiKey
         self.placeType = placeType
         self.coordinate = coordinate
         self.radius = radius
+        self.strictBounds = strictBounds
     }
 }
 
@@ -228,6 +234,10 @@ extension GooglePlacesAutocompleteContainer: UISearchBarDelegate, UISearchResult
             
             if radius > 0 {
                 params["radius"] = "\(radius)"
+            }
+            
+            if strictBounds {
+                params["strictbounds"] = "true"
             }
         }
         
