@@ -49,12 +49,14 @@ open class Place: NSObject {
 
 open class PlaceDetails: CustomStringConvertible {
     open let formattedAddress: String
+    open var name: String? = nil
+
     open var streetNumber: String? = nil
     open var route: String? = nil
     open var postalCode: String? = nil
     open var country: String? = nil
     open var countryCode: String? = nil
-    
+
     open var locality: String? = nil
     open var subLocality: String? = nil
     open var administrativeArea: String? = nil
@@ -69,6 +71,7 @@ open class PlaceDetails: CustomStringConvertible {
             else { return nil }
         
         self.formattedAddress = formattedAddress
+        self.name = result["name"] as? String
         
         if let addressComponents = result["address_components"] as? [[String: Any]] {
             streetNumber = get("street_number", from: addressComponents, ofType: .short)
