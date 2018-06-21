@@ -299,6 +299,10 @@ private class GooglePlacesRequestHelpers {
     }
     
     static func getPlaces(with parameters: [String: String], completion: @escaping ([Place]) -> Void) {
+        var parameters = parameters
+        if let deviceLanguage = deviceLanguage {
+            parameters["language"] = deviceLanguage
+        }
         doRequest(
             "https://maps.googleapis.com/maps/api/place/autocomplete/json",
             params: parameters,
@@ -310,10 +314,18 @@ private class GooglePlacesRequestHelpers {
     }
     
     static func getPlaceDetails(id: String, apiKey: String, completion: @escaping (PlaceDetails?) -> Void) {
+        var parameters = [ "placeid": id, "key": apiKey ]
+        if let deviceLanguage = deviceLanguage {
+            parameters["language"] = deviceLanguage
+        }
         doRequest(
             "https://maps.googleapis.com/maps/api/place/details/json",
-            params: [ "placeid": id, "key": apiKey ],
+            params: parameters,
             completion: { completion(PlaceDetails(json: $0 as? [String: Any] ?? [:])) }
         )
+    }
+    
+    private static var deviceLanguage: String? {
+        return (Locale.current as NSLocale).object(forKey: NSLocale.Key.languageCode) as? String
     }
 }
