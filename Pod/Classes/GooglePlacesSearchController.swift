@@ -22,9 +22,9 @@ public enum PlaceType: String {
 }
 
 open class Place: NSObject {
-    open let id: String
-    open let mainAddress: String
-    open let secondaryAddress: String
+    public let id: String
+    public let mainAddress: String
+    public let secondaryAddress: String
     
     override open var description: String {
         get { return "\(mainAddress), \(secondaryAddress)" }
@@ -48,7 +48,7 @@ open class Place: NSObject {
 }
 
 open class PlaceDetails: CustomStringConvertible {
-    open let formattedAddress: String
+    public let formattedAddress: String
     open var name: String? = nil
 
     open var streetNumber: String? = nil
