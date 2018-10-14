@@ -4,5 +4,5 @@ platform :ios, '8.0'
 use_frameworks!
 
 target 'GooglePlacesSearchController_Example' do
-  pod "GooglePlacesSearchController", :path => "../"
+    pod 'GooglePlacesSearchController', :path => '../'
 end
