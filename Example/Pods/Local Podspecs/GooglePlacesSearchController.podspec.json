@@ -12,7 +12,7 @@
     "Dmitry Shmidt": "dima.shmidt@gmail.com"
   },
   "social_media_url": "https://twitter.com/mind_detonator",
-  "swift_version": "4.0",
+  "swift_versions": "4.0",
   "source": {
     "git": "https://github.com/shmidt/GooglePlacesSearchController.git",
     "tag": "0.2.2"
@@ -22,5 +22,6 @@
   },
   "requires_arc": true,
   "source_files": "Pod/Classes/**/*",
-  "resources": "Pod/Assets/*.png"
+  "resources": "Pod/Assets/*.png",
+  "swift_version": "4.0"
 }
