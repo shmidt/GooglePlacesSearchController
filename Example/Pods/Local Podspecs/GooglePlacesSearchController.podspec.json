@@ -1,6 +1,6 @@
 {
   "name": "GooglePlacesSearchController",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "summary": "Autocompleting address search controller, uses Google Maps Autocomplete API. Written in Swift 4.",
   "homepage": "https://github.com/shmidt/GooglePlacesSearchController",
   "screenshots": [
@@ -15,7 +15,7 @@
   "swift_versions": "4.0",
   "source": {
     "git": "https://github.com/shmidt/GooglePlacesSearchController.git",
-    "tag": "0.2.2"
+    "tag": "0.2.3"
   },
   "platforms": {
     "ios": "8.0"
