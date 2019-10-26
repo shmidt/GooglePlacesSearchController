@@ -30,13 +30,13 @@ open class Place: NSObject {
         get { return "\(mainAddress), \(secondaryAddress)" }
     }
     
-    init(id: String, mainAddress: String, secondaryAddress: String) {
+    public init(id: String, mainAddress: String, secondaryAddress: String) {
         self.id = id
         self.mainAddress = mainAddress
         self.secondaryAddress = secondaryAddress
     }
     
-    convenience init(prediction: [String: Any]) {
+    convenience public init(prediction: [String: Any]) {
         let structuredFormatting = prediction["structured_formatting"] as? [String: Any]
         
         self.init(
