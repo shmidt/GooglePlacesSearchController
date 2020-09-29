@@ -152,6 +152,11 @@ public protocol GooglePlacesAutocompleteViewControllerDelegate: class {
     func viewController(didManualCompleteWith text: String)
 }
 
+public extension GooglePlacesAutocompleteViewControllerDelegate {
+    @available(iOS 13.0, *)
+    func viewController(didManualCompleteWith text: String) {}
+}
+
 open class GooglePlacesAutocompleteContainer: UITableViewController {
     private weak var delegate: GooglePlacesAutocompleteViewControllerDelegate?
     
@@ -165,7 +170,6 @@ open class GooglePlacesAutocompleteContainer: UITableViewController {
     private var places = [Place]() {
         didSet { tableView.reloadData() }
     }
-    
     
     convenience init(delegate: GooglePlacesAutocompleteViewControllerDelegate, apiKey: String, placeType: PlaceType = .all, coordinate: CLLocationCoordinate2D, radius: Double, strictBounds: Bool) {
         self.init()
