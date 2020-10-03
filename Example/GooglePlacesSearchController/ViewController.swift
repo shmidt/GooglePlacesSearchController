@@ -40,4 +40,9 @@ extension ViewController: GooglePlacesAutocompleteViewControllerDelegate {
         print(place.description)
         placesSearchController.isActive = false
     }
+    
+    func viewController(didManualCompleteWith text: String) {
+        print(text)
+        placesSearchController.isActive = false
+    }
 }

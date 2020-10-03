@@ -139,11 +139,22 @@ open class GooglePlacesSearchController: UISearchController, UISearchBarDelegate
         self.hidesNavigationBarDuringPresentation = false
         self.definesPresentationContext = true
         self.searchBar.placeholder = searchBarPlaceholder
+        self.searchBar.returnKeyType = .done
+        if #available(iOS 13.0, *) {
+            self.searchBar.searchTextField.delegate = gpaViewController
+        }
     }
 }
 
 public protocol GooglePlacesAutocompleteViewControllerDelegate: class {
     func viewController(didAutocompleteWith place: PlaceDetails)
+    @available(iOS 13.0, *)
+    func viewController(didManualCompleteWith text: String)
+}
+
+public extension GooglePlacesAutocompleteViewControllerDelegate {
+    @available(iOS 13.0, *)
+    func viewController(didManualCompleteWith text: String) {}
 }
 
 open class GooglePlacesAutocompleteContainer: UITableViewController {
@@ -159,7 +170,6 @@ open class GooglePlacesAutocompleteContainer: UITableViewController {
     private var places = [Place]() {
         didSet { tableView.reloadData() }
     }
-    
     
     convenience init(delegate: GooglePlacesAutocompleteViewControllerDelegate, apiKey: String, placeType: PlaceType = .all, coordinate: CLLocationCoordinate2D, radius: Double, strictBounds: Bool) {
         self.init()
@@ -242,6 +252,17 @@ extension GooglePlacesAutocompleteContainer: UISearchBarDelegate, UISearchResult
         }
         
         return params
+    }
+}
+
+extension GooglePlacesAutocompleteContainer: UITextFieldDelegate {
+    
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let text = textField.text else { return false }
+        if #available(iOS 13.0, *) {
+            self.delegate?.viewController(didManualCompleteWith: text)
+        }
+        return true
     }
 }
 
