@@ -49,6 +49,7 @@ open class Place: NSObject {
 
 open class PlaceDetails: CustomStringConvertible {
     public let formattedAddress: String
+    public let placeId: String
     open var name: String? = nil
 
     open var streetNumber: String? = nil
@@ -69,8 +70,11 @@ open class PlaceDetails: CustomStringConvertible {
         guard let result = json["result"] as? [String: Any],
             let formattedAddress = result["formatted_address"] as? String
             else { return nil }
-        
         self.formattedAddress = formattedAddress
+        
+        guard let placeId = result["place_id"] as? String else { return nil }
+        self.placeId = placeId
+        
         self.name = result["name"] as? String
         
         if let addressComponents = result["address_components"] as? [[String: Any]] {
